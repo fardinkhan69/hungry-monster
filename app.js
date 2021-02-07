@@ -8,12 +8,21 @@ const getFoodName = foodName =>{
 }
 
 //getting input value from search box 
+const inputValueGet = () =>{
+   
+        
+        const mealNameInput = document.getElementById('meal_name_input').value;
+        if(mealNameInput == '' || mealNameInput == undefined){
+            alert('please input a character into search feild')
+        }
+        else{
+            getFoodName(mealNameInput)
+        }
+       
+   
+}
 
-const searchBtn = document.getElementById('search_btn');
-searchBtn.addEventListener('click',()=>{
-    const mealNameInput = document.getElementById('meal_name_input').value;
-    getFoodName(mealNameInput)
-})
+
 
 // showing meal items in a grid 
 const showMealGrid = mealInput =>{
@@ -74,6 +83,4 @@ const singleMealFullInfo = meal =>{
 }
 
 
-
-
-getFoodName()
+// getFoodName()
