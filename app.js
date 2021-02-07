@@ -7,7 +7,7 @@ const getFoodName = foodName =>{
     .then(data =>showMealGrid(data.meals) )
     .catch(error =>{
         if(error){
-            document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search item'
+            document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search term'
         }
     })
 }
