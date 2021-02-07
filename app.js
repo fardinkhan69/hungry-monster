@@ -88,8 +88,6 @@ const singleMealFullInfo = meal =>{
         
     }
 
-
-    console.log(singleHeadline,singleImage)
 }
 
 
