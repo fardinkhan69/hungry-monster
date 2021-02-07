@@ -36,8 +36,10 @@ if(mealInput == '' || mealInput == undefined){
     document.getElementById('error_msg').innerText = 'there is no recipe matched with your search item'
 }
 else{
-    document.getElementById('error_msg').style.display ='none'
+    document.getElementById('error_msg').style.display ='none';
+    parentDiv.innerHTML='';
     mealInput.forEach(singleMeal => {
+      
         const anotherDiv = document.createElement('div')
         const childMealDiv = `
         <div class='single_meal_box' onclick="singleMealId('${singleMeal.idMeal}')">
@@ -65,6 +67,7 @@ fetch(url)
 //showing the information of the clicked meal
 
 const singleMealFullInfo = meal =>{
+    
     const singleHeadline = meal.strMeal;
     document.getElementById('meal_headline').innerText =`${singleHeadline} 
     Ingredients` ;
@@ -75,16 +78,19 @@ const singleMealFullInfo = meal =>{
     //ul element for the ingredient list
     const ingredientListUl= document.getElementById('ingredient_list');
     ingredientListUl.style.display = 'block'
-
+   ingredientListUl.innerHTML=''
     for (let i = 0; i < 20; i++) {
         const ingredientList = `strIngredient${i}`;
+       
 
         if (meal[ingredientList] != "" && meal[ingredientList] != undefined ) {
             const li = document.createElement("li");
             li.innerText = meal[ingredientList]; 
             li.className = "ingredient-list";
             ingredientListUl.appendChild(li);
+           
         }
+
        
         
     }
