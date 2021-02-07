@@ -7,7 +7,7 @@ const getFoodName = foodName =>{
     .then(data =>showMealGrid(data.meals) )
     .catch(error =>{
         if(error){
-            document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search term'
+            document.getElementById('error_msg').innerText = 'there is no recipe matched with your search term'
         }
     })
 }
@@ -33,9 +33,10 @@ const inputValueGet = () =>{
 const showMealGrid = mealInput =>{
 let parentDiv = document.getElementById('mealsContainer');
 if(mealInput == '' || mealInput == undefined){
-    document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search item'
+    document.getElementById('error_msg').innerText = 'there is no recipe matched with your search item'
 }
 else{
+    document.getElementById('error_msg').style.display ='none'
     mealInput.forEach(singleMeal => {
         const anotherDiv = document.createElement('div')
         const childMealDiv = `
