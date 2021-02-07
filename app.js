@@ -1,4 +1,4 @@
-
+//fetching all meals data matched with search value
 const getFoodName = foodName =>{
 
     const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${foodName}`
@@ -7,7 +7,7 @@ const getFoodName = foodName =>{
     .then(data =>showMealGrid(data.meals) )
 }
 
-
+//getting input value from search box 
 
 const searchBtn = document.getElementById('search_btn');
 searchBtn.addEventListener('click',()=>{
@@ -15,6 +15,7 @@ searchBtn.addEventListener('click',()=>{
     getFoodName(mealNameInput)
 })
 
+// showing meal items in a grid 
 const showMealGrid = mealInput =>{
 let parentDiv = document.getElementById('mealsContainer');
 
@@ -29,19 +30,10 @@ mealInput.forEach(singleMeal => {
     anotherDiv.innerHTML= childMealDiv
     parentDiv.appendChild(anotherDiv)
 
-    // parentDiv.innerHTML += childMealDiv;
-});
-// for (let i = 0; i < mealInput.length; i++) {
-//     const mealsDataFull = mealInput[i];
 
-//     const childMealDiv = `
-//         <div>
-//             <img src = ${mealsDataFull.strMealThumb}>
-//             <h3>${mealsDataFull.strMeal}</h3>
-//         </div>
-//     `;  
-//     console.log(childMealDiv)
-// }
+});
+
+// fetching single Meal after click on any meal from all meal items
 }
 const singleMealId = singleMealId =>{
 const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${singleMealId}`
@@ -50,6 +42,7 @@ fetch(url)
 .then(data => singleMealFullInfo(data.meals[0]))
 }
 
+//showing the information of the clicked meal
 
 const singleMealFullInfo = meal =>{
     const singleHeadline = meal.strMeal;
@@ -66,12 +59,6 @@ const singleMealFullInfo = meal =>{
     for (let i = 0; i < 20; i++) {
         const ingredientList = `strIngredient${i}`;
 
-        // if(meal[ingredientList] != ""){
-        //     const li = document.createElement("li");
-        //     li.innerText = meal[ingredientList];
-        //     li.className = "ingredient-list";
-        //     ingredientListUl.appendChild(li);
-        // }
         if (meal[ingredientList] != "" && meal[ingredientList] != undefined ) {
             const li = document.createElement("li");
             li.innerText = meal[ingredientList]; 
