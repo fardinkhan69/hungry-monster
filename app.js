@@ -5,6 +5,11 @@ const getFoodName = foodName =>{
     fetch(url)
     .then( res =>res.json())
     .then(data =>showMealGrid(data.meals) )
+    .catch(error =>{
+        if(error){
+            document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search item'
+        }
+    })
 }
 
 //getting input value from search box 
@@ -27,20 +32,25 @@ const inputValueGet = () =>{
 // showing meal items in a grid 
 const showMealGrid = mealInput =>{
 let parentDiv = document.getElementById('mealsContainer');
+if(mealInput == '' || mealInput == undefined){
+    document.getElementById('mealsContainer').innerText = 'there is no recipe matched with your search item'
+}
+else{
+    mealInput.forEach(singleMeal => {
+        const anotherDiv = document.createElement('div')
+        const childMealDiv = `
+        <div class='single_meal_box' onclick="singleMealId('${singleMeal.idMeal}')">
+            <img src ="${singleMeal.strMealThumb}">
+            <h3>${singleMeal.strMeal}</h3>
+        </div>
+        `;
+        anotherDiv.innerHTML= childMealDiv
+        parentDiv.appendChild(anotherDiv)
+    
+    
+    });
+}
 
-mealInput.forEach(singleMeal => {
-    const anotherDiv = document.createElement('div')
-    const childMealDiv = `
-    <div class='single_meal_box' onclick="singleMealId('${singleMeal.idMeal}')">
-        <img src ="${singleMeal.strMealThumb}">
-        <h3>${singleMeal.strMeal}</h3>
-    </div>
-    `;
-    anotherDiv.innerHTML= childMealDiv
-    parentDiv.appendChild(anotherDiv)
-
-
-});
 
 // fetching single Meal after click on any meal from all meal items
 }
