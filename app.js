@@ -53,9 +53,34 @@ fetch(url)
 
 const singleMealFullInfo = meal =>{
     const singleHeadline = meal.strMeal;
+    document.getElementById('meal_headline').innerText =`${singleHeadline} 
+    Ingredients` ;
     // const singleImage = meal.strMealThumb;
     const singleImage = document.getElementById('single_img');
-    singleImage.setAttribute('src',meal.strMealThumb)
+    singleImage.style.display ='block'
+    singleImage.setAttribute('src',meal.strMealThumb);
+    //ul element for the ingredient list
+    const ingredientListUl= document.getElementById('ingredient_list');
+    ingredientListUl.style.display = 'block'
+
+    for (let i = 0; i < 20; i++) {
+        const ingredientList = `strIngredient${i}`;
+
+        // if(meal[ingredientList] != ""){
+        //     const li = document.createElement("li");
+        //     li.innerText = meal[ingredientList];
+        //     li.className = "ingredient-list";
+        //     ingredientListUl.appendChild(li);
+        // }
+        if (meal[ingredientList] != "" && meal[ingredientList] != undefined ) {
+            const li = document.createElement("li");
+            li.innerText = meal[ingredientList]; 
+            li.className = "ingredient-list";
+            ingredientListUl.appendChild(li);
+        }
+       
+        
+    }
 
 
     console.log(singleHeadline,singleImage)

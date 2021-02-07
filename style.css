@@ -17,4 +17,18 @@
     text-align: center;
     padding-bottom: 22px;
     overflow: hidden;
+    
+}
+.single_meal_info{
+    text-align: center;
+}
+#single_img{
+    height: 373px;
+width: 546px;
+border-radius: 31px;
+display: none;
+margin: auto;
+}
+#ingredient_list{
+    display: none;
 }
